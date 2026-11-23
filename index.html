@@ -259,21 +259,50 @@ function sendMessage() {
   sendButton.disabled = true;
   sendButton.textContent = "...";
 
-  setTimeout(() => {
-    const replies = [
-      "That's an interesting question! This is a demo response. Connect an AI model to give ai.in real AI capabilities.",
-      "Great question! Your AI website is working. The next step is connecting a real AI service.",
-      "I can help explore that topic once a real AI model is connected to this website."
-    ];
+  
+setTimeout(() => {
+    const text = question.toLowerCase();
+    let answer;
 
-    const answer = replies[
-      Math.floor(Math.random() * replies.length)
-    ];
+    if (/\b(hi|hello|hey)\b/.test(text)) {
+        answer = "Hello! Welcome to ai.in. How can I help you today?";
+    } 
+    else if (text.includes("your name") || text.includes("who are you")) {
+        answer = "I'm ai.in, your friendly AI assistant!";
+    } 
+    else if (text.includes("how are you")) {
+        answer = "I'm doing great! Thanks for asking. What can I help you with?";
+    } 
+    else if (text.includes("math") || text.includes("calculate")) {
+        answer = "I can help with basic maths! Please write your maths question clearly.";
+    } 
+    else if (text.includes("science")) {
+        answer = "Science helps us understand the world! Ask me a specific science question.";
+    } 
+    else if (text.includes("code") || text.includes("programming")) {
+        answer = "Programming is fun! I can discuss HTML, CSS and JavaScript. What are you learning?";
+    } 
+    else if (text.includes("ai") || text.includes("artificial intelligence")) {
+        answer = "AI stands for Artificial Intelligence. It allows computers to perform tasks that normally require human intelligence.";
+    } 
+    else if (text.includes("help")) {
+        answer = "Of course! Try asking me about maths, science, coding or artificial intelligence.";
+    } 
+    else if (text.includes("thank")) {
+        answer = "You're welcome! Ask me anything else.";
+    } 
+    else if (text.includes("bye")) {
+        answer = "Goodbye! Thanks for visiting ai.in.";
+    } 
+    else {
+        answer = "That's an interesting question! I don't know that answer yet. Try asking me about maths, science or coding.";
+    }
 
     addMessage(answer, "bot");
     sendButton.disabled = false;
     sendButton.textContent = "Send ↑";
-  }, 700);
+}, 700);
+
 }
 
 input.addEventListener("keydown", function(event) {
