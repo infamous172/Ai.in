@@ -273,9 +273,20 @@ setTimeout(() => {
     else if (text.includes("how are you")) {
         answer = "I'm doing great! Thanks for asking. What can I help you with?";
     } 
-    else if (text.includes("math") || text.includes("calculate")) {
-        answer = "I can help with basic maths! Please write your maths question clearly.";
-    } 
+    else if (/^\s*\d+\s*[+\-*/]\s*\d+\s*$/.test(text)) {
+    const match = text.match(/^\s*(\d+)\s*([+\-*/])\s*(\d+)\s*$/);
+    const a = Number(match[1]);
+    const b = Number(match[3]);
+    const operator = match[2];
+
+    if (operator === "+") answer = String(a + b);
+    else if (operator === "-") answer = String(a - b);
+    else if (operator === "*") answer = String(a * b);
+    else if (operator === "/") answer = b === 0 ? "Cannot divide by zero." : String(a / b);
+}
+else if (text.includes("math") || text.includes("calculate")) {
+    answer = "I can help with basic maths! Try something like 2+2.";
+}
     else if (text.includes("science")) {
         answer = "Science helps us understand the world! Ask me a specific science question.";
     } 
